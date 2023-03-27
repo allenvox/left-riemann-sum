@@ -47,17 +47,15 @@ int main()
     cin >> b;
     cout << "epsilon = ";
     cin >> eps;
-
     double h = runge_step(eps); // step value using Runge rule
     s = left_riemann_sum_h(f, a, b, h);
     cout << "Integral (left_riemann_sum_h) = " << s << endl;
-
     int n = 1;
     double s1 = left_riemann_sum_n(f, a, b, n);
     do
     {
         s = s1;
-        n = 2 * n; // multiply steps count by 2 - reduce step value by 2
+        n *= 2; // multiply steps count by 2 - reduce step value by 2
         s1 = left_riemann_sum_n(f, a, b, n);
     } while (fabs(s1 - s) > eps);
     cout << "Integral (left_riemann_sum_n) = " << s1 << endl;
